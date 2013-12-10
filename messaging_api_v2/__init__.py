@@ -6,9 +6,9 @@ messaging_api_v2
 API version 2.
 
 """
-from flask import Flask
+from api_utils import ResponsiveFlask
 
-app = Flask(__name__)
+app = ResponsiveFlask(__name__)
 app.debug = True
 
 from . import views

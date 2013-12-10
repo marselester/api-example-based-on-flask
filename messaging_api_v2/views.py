@@ -1,5 +1,5 @@
 # coding: utf-8
-from flask import jsonify
+from flask import request
 from flask.views import MethodView
 
 from . import app
@@ -20,20 +20,21 @@ class MessageView(MethodView):
     def get(self, message_id):
         """Shows list of messages or certain message if id is given."""
         if message_id is None:
-            return jsonify(messages=message_list)
-        return jsonify(**message_list[message_id])
+            return {'messages': message_list}
+        return message_list[message_id]
 
     def post(self):
         """Creates message."""
-        return jsonify()
+        return {}, 201, {'Location': '/messages/<new_id>'}
 
     def put(self, message_id):
         """Updates message."""
-        return jsonify()
+        # reproduce key error
+        request.args['blah']
 
     def delete(self, message_id):
         """Deletes message."""
-        return jsonify()
+        return {}
 
 message_view = MessageView.as_view('message')
 app.add_url_rule('/messages/', defaults={'message_id': None},
