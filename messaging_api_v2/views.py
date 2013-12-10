@@ -1,5 +1,5 @@
 # coding: utf-8
-from flask import request
+from flask import request, abort
 from flask.views import MethodView
 
 from . import app
@@ -8,9 +8,15 @@ from . import app
 message_list = [
     {
         'content': 'hello world from V2',
+        'is_deleted': False,
     },
     {
         'content': 'hi world from V2',
+        'is_deleted': False,
+    },
+    {
+        'content': 'I was deleted',
+        'is_deleted': True,
     },
 ]
 
@@ -18,23 +24,42 @@ message_list = [
 class MessageView(MethodView):
 
     def get(self, message_id):
-        """Shows list of messages or certain message if id is given."""
+        """Shows list of active messages or certain message if id is given.
+
+        If requested message is deleted it should return 410.
+
+        """
         if message_id is None:
-            return {'messages': message_list}
-        return message_list[message_id]
+            return {
+                'messages': [m for m in message_list if not m['is_deleted']]
+            }
+
+        try:
+            message = message_list[message_id]
+        except IndexError:
+            abort(404)
+
+        if message['is_deleted']:
+            return {}, 410
+        else:
+            return message
 
     def post(self):
         """Creates message."""
         return {}, 201, {'Location': '/messages/<new_id>'}
 
     def put(self, message_id):
-        """Updates message."""
+        """Updates message.
+
+        If data is not changed it should return 304.
+
+        """
         # reproduce key error
         request.args['blah']
 
     def delete(self, message_id):
         """Deletes message."""
-        return {}
+        return {}, 204
 
 message_view = MessageView.as_view('message')
 app.add_url_rule('/messages/', defaults={'message_id': None},
