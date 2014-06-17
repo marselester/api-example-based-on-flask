@@ -15,7 +15,6 @@ import messaging_api_v1
 import messaging_api_v2
 import messaging_api_v3
 
-
 app = DispatcherMiddleware(NotFound(), {
     '/v1': messaging_api_v1.app,
     '/v2': messaging_api_v2.app,

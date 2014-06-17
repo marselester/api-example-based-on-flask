@@ -1,8 +1,8 @@
 # coding: utf-8
 from flask.views import MethodView
 
+from messaging.models import user_list
 from . import app, hawk
-
 
 message_list = [
     {
@@ -16,13 +16,6 @@ message_list = [
     {
         'content': 'I was deleted',
         'is_deleted': True,
-    },
-]
-user_list = [
-    {
-        'name': 'Marsel',
-        'access_key': '666',
-        'secret_key': 'werxhqb98rpaxn39848xrunpaw3489ruxnpa98w4rxn'
     }
 ]
 
@@ -30,8 +23,8 @@ user_list = [
 @hawk.client_key_loader
 def lookup_client_key(client_id):
     for user in user_list:
-        if user['access_key'] == client_id:
-            return user['secret_key']
+        if user.access_key == client_id:
+            return user.secret_key
 
 
 class MessageView(MethodView):
