@@ -1,0 +1,3 @@
+# coding: utf-8
+HAWK_ALGORITHM = 'sha256'
+HAWK_ALLOW_COOKIE_AUTH = True
