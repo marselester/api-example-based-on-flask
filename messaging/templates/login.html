@@ -1,0 +1,20 @@
+<form action="" method="POST">
+    {{ form.name.label }} {{ form.name(size=20) }}<br/>
+    {% if form.name.errors %}
+        <ul class="errors">
+        {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {{ form.password.label }} {{ form.password(size=20) }}<br/>
+    {% if form.password.errors %}
+        <ul class="errors">
+        {% for error in form.password.errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <input type="submit" value="Sign in">
+</form>

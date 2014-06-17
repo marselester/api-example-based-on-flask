@@ -1,4 +1,6 @@
 Flask==0.10.1
+Flask-Login==0.2.11
+Flask-WTF==0.9.5
 mohawk==0.2.1
 gunicorn==18.0
 -e git+git://github.com/marselester/flask-api-utils.git#egg=flask-api-utils
