@@ -25,7 +25,7 @@ class APIVersioningTest(TestCase):
         self.assertEqual(r.status_code, expected_status_code)
 
     def test_404_when_api_version_does_not_exist(self):
-        r = self.app.get('/v3/messages/')
+        r = self.app.get('/v0/messages/')
         expected_status_code = 404
 
         self.assertEqual(r.status_code, expected_status_code)
