@@ -25,14 +25,16 @@ def lookup_client_key(client_id):
     for user in user_list:
         if user.access_key == client_id:
             return user.secret_key
+    else:
+        raise LookupError()
 
 
 class MessageView(MethodView):
-    @hawk.verify
+    @hawk.realm
     def get(self, message_id):
         return {'get is': 'ok'}
 
-    @hawk.verify
+    @hawk.realm
     def post(self):
         return {'post is': 'ok'}
 
