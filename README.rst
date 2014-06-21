@@ -5,9 +5,9 @@ API Example based on Flask
 This repository is used as example Flask project in `API based on Flask`_ post.
 
 Consider Flask application from **messaging** package as deployed on
-``https://app.example.com``. You can sign in there as user *marsel*
+https://**app**.example.com. You can sign in there as user *marsel*
 (password is *123*). WSGI application from **messaging_api** module
-should be assumed as deployed on ``https://api.example.com``.
+should be assumed as deployed on https://**api**.example.com.
 
 Install requirements and run gunicorn.
 
