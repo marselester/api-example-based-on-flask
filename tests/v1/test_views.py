@@ -5,7 +5,6 @@ from messaging_api_v1 import app
 
 
 class UrlNamingTest(TestCase):
-
     def setUp(self):
         self.app = app.test_client()
 

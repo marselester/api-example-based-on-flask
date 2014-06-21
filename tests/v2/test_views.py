@@ -5,7 +5,6 @@ from messaging_api_v2 import app
 
 
 class MessageViewTest(TestCase):
-
     def setUp(self):
         self.app = app.test_client()
 

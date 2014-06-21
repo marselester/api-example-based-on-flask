@@ -4,7 +4,6 @@ from flask.views import MethodView
 
 from . import app
 
-
 message_list = [
     {
         'content': 'hello world from V2',
@@ -17,12 +16,20 @@ message_list = [
     {
         'content': 'I was deleted',
         'is_deleted': True,
-    },
+    }
 ]
 
 
-class MessageView(MethodView):
+@app.default_errorhandler
+def http_error_handler(error):
+    response = {
+        'code': error.code,
+        'message': str(error),
+    }
+    return response, error.code
 
+
+class MessageView(MethodView):
     def get(self, message_id):
         """Shows list of active messages or certain message if id is given.
 

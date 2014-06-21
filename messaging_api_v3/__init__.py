@@ -6,8 +6,7 @@ messaging_api_v3
 API version 3.
 
 """
-from api_utils import ResponsiveFlask
-from api_utils.auth import Hawk
+from api_utils import ResponsiveFlask, Hawk
 from messaging import login_manager
 
 app = ResponsiveFlask(__name__, instance_relative_config=True)

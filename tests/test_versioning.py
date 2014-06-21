@@ -8,7 +8,6 @@ from messaging_api import app
 
 
 class APIVersioningTest(TestCase):
-
     def setUp(self):
         self.app = Client(app, BaseResponse)
 

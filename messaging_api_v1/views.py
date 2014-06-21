@@ -4,7 +4,6 @@ from flask.views import MethodView
 
 from . import app
 
-
 message_list = [
     {
         'content': 'hello world from V1',
@@ -16,7 +15,6 @@ message_list = [
 
 
 class MessageView(MethodView):
-
     def get(self, message_id):
         """Shows list of messages or certain message if id is given."""
         if message_id is None:

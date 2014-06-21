@@ -1,6 +1,7 @@
 # coding: utf-8
 import json
 from unittest import TestCase
+
 import mohawk
 
 from messaging_api_v3 import app

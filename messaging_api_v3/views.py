@@ -20,6 +20,15 @@ message_list = [
 ]
 
 
+@app.default_errorhandler
+def http_error_handler(error):
+    response = {
+        'code': error.code,
+        'message': str(error),
+    }
+    return response, error.code
+
+
 @hawk.client_key_loader
 def lookup_client_key(client_id):
     for user in user_list:
@@ -30,11 +39,11 @@ def lookup_client_key(client_id):
 
 
 class MessageView(MethodView):
-    @hawk.realm
+    decorators = [hawk.auth_required]
+
     def get(self, message_id):
         return {'get is': 'ok'}
 
-    @hawk.realm
     def post(self):
         return {'post is': 'ok'}
 
