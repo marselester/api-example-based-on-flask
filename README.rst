@@ -20,4 +20,4 @@ Install requirements and run gunicorn.
 Sign in on ``http://127.0.0.1:5000`` and now you can try to make
 authenticated requests to API ``http://127.0.0.1:8000/v3/messages/``.
 
-.. _API based on Flask: http://marselester.ru/api-based-on-flask.html
+.. _API based on Flask: http://marselester.com/api-based-on-flask.html
